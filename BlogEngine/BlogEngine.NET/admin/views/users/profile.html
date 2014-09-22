@@ -1,0 +1,130 @@
+﻿<div id="wrap">
+    <div data-ng-include src="'views/shared/_nav.html'"></div>
+    <div data-ng-include src="'views/shared/_navusers.html'"></div>
+    <div class="container admin-views-main admin-views-users-profile" data-ng-controller="ProfileController">
+        <div class="page-header clearfix">
+            <h2 class="page-title pull-left">
+                {{lbl.myProfile}} <span id="spinner" class="loaded"><i class="fa fa-spinner fa-spin fa-sm"></i></span>
+            </h2>
+            <button data-ng-click="save()" class="btn btn-success btn-header pull-right" type="button"><i class="fa fa-save"></i>{{lbl.save}}</button>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 clearfix">
+                <div class="pull-left avatar-user">
+                    <img ng-src="{{photo}}" class="pull-left" title="Avatar" />
+                    <div class="avatar-control">
+                        <a href="" data-ng-click="removePicture()" title="Remove Picture" type="button"><i class="fa fa-times-circle"></i></a>
+                        <span>
+                            <a href="" id="picChange" data-ng-click="changePicture()" type="button"><i class="fa fa-picture-o"></i></a>
+                            <input type="file" title="Change Picture" data-role="magic-overlay" data-target="#picChange" onchange="angular.element(this).scope().changePicture(this.files)" />
+                        </span>
+                    </div>
+                </div>
+                <div class="pull-left user-info">
+                    <span class="user-name">{{user.Profile.DisplayName}}</span>
+                    <br />
+                    <div class="role-control">
+                        {{lbl.roles}}: <span data-ng-repeat="role in user.Roles" class="label label-default">{{role.RoleName}} </span>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input id="cbPrivate" type="checkbox" name="ckEnabled" data-ng-model="user.Profile.Private" />
+                            {{lbl.isPrivate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-sm-6">
+                <div class="form-group clearfix">
+                    <label>{{lbl.aboutMe}}</label>
+                    <textarea class="form-control about-textarea" data-ng-model="user.Profile.AboutMe" cols="69"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-sm-6">
+                <div class="well">
+                    <div id="frm-user-edit" class="form-horizontal clearfix">
+                        <h4>{{lbl.personalDetails}}</h4>
+                        <hr />
+                        <div class="form-group">
+                            <label class="control-label col-md-4">{{lbl.displayName}}</label>
+                            <div class="col col-md-8">
+                                <input type="text" class="form-control" data-ng-model="user.Profile.DisplayName" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="txtFirstName">{{lbl.firstName}}</label>
+                            <div class="col col-md-8">
+                                <input type="text" id="txtFirstName" name="txtFirstName" class="form-control" data-ng-model="user.Profile.FirstName" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="txtLastName">{{lbl.lastName}}</label>
+                            <div class="col col-md-8">
+                                <input type="text" id="txtLastName" name="txtLastName" class="form-control" data-ng-model="user.Profile.LastName" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">{{lbl.middleName}}</label>
+                            <div class="col col-md-8">
+                                <input type="text" class="form-control" data-ng-model="user.Profile.MiddleName" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">{{lbl.birthday}}</label>
+                            <div class="col col-md-8">
+                                <input type="text" class="form-control" data-ng-model="user.Profile.Birthday" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-sm-6">
+                <div class="well">
+                    <div id="frm-user-edit" class="form-horizontal clearfix">
+                        <h4>{{lbl.contactDetails}}</h4>
+                        <hr />
+                        <div class="form-group">
+                            <label class="control-label col-md-4">{{lbl.country}}</label>
+                            <div class="col col-md-8">
+                                <input type="text" class="form-control" data-ng-model="user.Profile.Country" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">{{lbl.regionState}}</label>
+                            <div class="col col-md-8">
+                                <input type="text" class="form-control" data-ng-model="user.Profile.RegionState" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">{{lbl.cityTown}}</label>
+                            <div class="col col-md-8">
+                                <input type="text" class="form-control" data-ng-model="user.Profile.CityTown" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">{{lbl.phoneMain}}</label>
+                            <div class="col col-md-8">
+                                <input type="text" class="form-control" data-ng-model="user.Profile.PhoneMain" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">{{lbl.phoneMobile}}</label>
+                            <div class="col col-md-8">
+                                <input type="text" class="form-control" data-ng-model="user.Profile.PhoneMobile" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('[data-role=magic-overlay]').each(function () {
+        var overlay = $(this), target = $(overlay.data('target'));
+        overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
+    });
+</script>
+<div id="footer" data-ng-include src="'views/shared/_footer.html'"></div>

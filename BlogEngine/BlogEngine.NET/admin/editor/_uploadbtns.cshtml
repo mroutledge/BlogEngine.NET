@@ -1,0 +1,13 @@
+﻿<div class="btn-group fileupload-wrapper">
+    <div class="btn-group btn-group-fileupload">
+        <button type="button" tabindex="-1" class="btn btn-default" id="fileBtn"><i class="fa fa-upload"></i> {{lbl.attachFile}}</button>
+        <input type="file" data-role="magic-overlay" tabindex="-1" data-target="#fileBtn" title="{{lbl.attachFile}}" onchange="angular.element(this).scope().uploadFile('file', this.files)" />
+    </div>
+    <div class="btn-group btn-group-fileupload">
+        <button type="button" tabindex="-1" class="btn btn-default" id="videoBtn"><i class="fa fa-video-camera"></i> {{lbl.insertVideo}}</button>
+        <input type="file" data-role="magic-overlay" tabindex="-1" data-target="#videoBtn" title="{{lbl.insertVideo}}" onchange="angular.element(this).scope().uploadFile('video', this.files)" />
+    </div>
+    <div class="btn-group">
+        <button type="button" tabindex="-1" class="btn  btn-default" id="pictureBtn" data-target="#modal-file-manager" data-toggle="modal" title="{{lbl.filePicker}}"><i class="fa fa-folder-open"></i> {{lbl.filePicker}}</button>
+    </div>
+</div>
